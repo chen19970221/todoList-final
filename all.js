@@ -6,23 +6,20 @@ const btn_add = document.querySelector('.btn_add')
 const thing = document.querySelector('.thing')
 const filterBtn = document.querySelector('.tab')
 const deleteBtn = document.querySelector('.delete') 
+const checkBtn = document.querySelector('.checkBtn')
 
 
 let data = []
-
 
 function render(){
   let str = ""
   data.forEach(function(item){
     let content = 
     `<li><label class="checkbox" for="">
-    <input type="checkbox" />
+    <input class="checkBtn" type="checkbox" />
     <span>${item.content}</span>
     </label>
     <a href="#" class="delete"></a></li>`
-    const obj = {}
-    obj.content = item.content
-    data.push(obj)
     str += content
   })
   list.innerHTML = str
@@ -39,39 +36,55 @@ btn_add.addEventListener('click', function(e){
   obj.content = thing.value
   data.push(obj)
   thing.value = ""
-  render()
+  render();
+  
 })
+
 
 
 // 進度分類
 filterBtn.addEventListener('click', function(e){
+  console.log(e.target.getAttribute('class'))
   let str = ""
   data.forEach(function(item){
     if (e.target.getAttribute('class')=="active") {
-      str ==  
+      str +=  
       `<li><label class="checkbox" for="">
-      <input type="checkbox" />
+      <input chenk="checkBtn" type="checkbox" />
       <span>${item.content}</span>
       </label>
       <a href="#" class="delete"></a></li>`
     }
-    console.log(str)
+   
     if (e.target.getAttribute('class')=="pending") {
       str += 
       `<li><label class="checkbox" for="">
-      <input type="checkbox" />
+      <input chenk="checkBtn" type="checkbox" />
       <span>${item.content}</span>
       </label>
       <a href="#" class="delete"></a></li>`
-    }
+    } 
+
     if (e.target.getAttribute('class')=="complete") {
       str +=  
       `<li><label class="checkbox" for="">
-      <input type="checkbox" />
+      <input chenk="checkBtn" type="checkbox" />
       <span>${item.content}</span>
       </label>
       <a href="#" class="delete"></a></li>`
     }
+    
   })
   list.innerHTML = str
 })
+
+
+
+// 已完成頁面：選項賦予一個 class="complete"
+checkBtn.addEventListener("click", function(e){
+  console.log(e.target)
+})
+
+
+// 待完成頁面：選項賦予一個 class="pending"
+
