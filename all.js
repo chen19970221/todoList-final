@@ -11,13 +11,14 @@ const todoThing = document.querySelector('.list li')
 
 
 
-// render
+// 初始 render
 let data = []
+let deleteData = []
 function render(){
   let str = ""
   data.forEach(function(item,index){
     let content = 
-    `<li  data-thing="${index}">
+    `<li data-thing="${index}">
       <label class="checkbox  for="">
         <input class="checkBtn" type="checkbox" />
         <span>${item.content}</span>
@@ -30,7 +31,7 @@ function render(){
 }
 render()
 
-
+// 新增待辦事項
 btn_add.addEventListener('click', function(e){
   if(thing.value.trim()==""){
     alert("請輸入待辦事項")
@@ -44,18 +45,27 @@ btn_add.addEventListener('click', function(e){
   
 })
 
+// 勾選已完成事項，賦予 complete
+list.addEventListener("click", function(e){
+  if(e.target.nodeName == "INPUT"){
+    const todoThing = document.querySelector('.list li') 
+    todoThing.setAttribute("class", "complete")
+    deleteData.push(todoThing)
+    console.log(deleteData)
+  }  
+})
 
 
 // 進度分類
 filterBtn.addEventListener('click', function(e){
+  console.log(e.target.className)
   if(e.target.className == "tab"){
     return
   }
 
-  
   let str = ""
   data.forEach(function(item,index){
-    if (e.target.getAttribute('class')=="active") {
+    if (e.target.className=="active") {
       str +=  
       `<li  data-thing="${index}">
         <label class="checkbox  for="">
@@ -64,9 +74,11 @@ filterBtn.addEventListener('click', function(e){
         </label>
         <a href="#" class="delete"></a>
       </li>`
-      console.log(str)
     }
-    if (e.target.getAttribute('class')=="pending") {
+    if (e.target.className=="pending") {
+      console.log(todoThing.className)
+        // let num =  e.target.getAttribute("data-num")
+        // data.splice(num,1)
       str += 
       `<li  data-thing="${index}">
       <label class="checkbox  for="">
@@ -76,36 +88,23 @@ filterBtn.addEventListener('click', function(e){
       <a href="#" class="delete"></a>
     </li>`
     } 
-    if (e.target.getAttribute('class')=="complete") {
-      if (li.getAttribute('class')=="finished") {
-        str +=  
-      `<li data-thing="${index}">
-        <label class="checkbox  for="">
-          <input class="checkBtn" type="checkbox" />
-          <span>${item.content}</span>
-        </label>
-        <a href="#" class="delete"></a>
-      </li>`
-      }
+    if (e.target.className=="todoThing.value") {
+    //   str +=  
+    // `<li data-thing="${index}">
+    //   <label class="checkbox  for="">
+    //     <input class="checkBtn" type="checkbox" />
+    //     <span>${item.content}</span>
+    //   </label>
+    //   <a href="#" class="delete"></a>
+    // </li>`
     }
       list.innerHTML = str
     })
   })
     
 
- 
 
 
 
-
-
-// 已完成頁面：選項賦予一個 class="finished"
-list.addEventListener("click", function(e){
-  if(e.target.nodeName == "INPUT"){
-    const todoThing = document.querySelector('.list li') 
-    todoThing.setAttribute("class", "finished")
-  }
-  
-})
 
 
