@@ -42,6 +42,7 @@ function render(status = 'active'){
 
  })
  list.innerHTML = str
+ todoThing();
 }
 render()
 
@@ -63,7 +64,7 @@ btn_add.addEventListener('click', function(e){
   data.push(obj)
   thing.value = ""
   render();
-
+  todoThing();
 })
 
 // 勾選已完成事項，賦予 complete
@@ -76,6 +77,7 @@ list.addEventListener("click", function(e){
       data[num].status = "complete"
     }
   }
+  todoThing();
 })
 
 // 刪除事項
@@ -110,7 +112,7 @@ function todoThing() {
   <a href="#">清除已完成項目</a>`;
   list_footer.innerHTML = content;
 }
-todoThing();
+
 
 
 
@@ -126,6 +128,7 @@ list_footer.addEventListener("click", function(e){
       }
     }
   }
+  render()
 })
 
 
