@@ -5,7 +5,7 @@ const list = document.querySelector('.list');
 const btnAdd = document.querySelector('.btn_add')
 const thing = document.querySelector('.thing')
 const filterBtn = document.querySelector('.tab')
-const listFooter = document.querySelector('.list_footer')  
+const listFooter = document.querySelector('.listFooter')  
 
 
 // 初始 render
@@ -56,7 +56,7 @@ list.addEventListener("click", function(e){
 list.addEventListener("click",function(e){
   if (e.target.nodeName == "A") {
     let selectedIitem = data.find((item) => item.id == e.target.getAttribute("data-id"))
-    let idx = data.indexOf(selectedIitem)
+    console.log(data.indexOf(selectedIitem))
 
     delete data[idx]
     render()
