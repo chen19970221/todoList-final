@@ -8,6 +8,7 @@ const filterBtn = document.querySelector('.tab')
 const listFooter = document.querySelector('.listFooter')  
 
 
+
 // 初始 render
 let data = []
 
@@ -53,15 +54,16 @@ list.addEventListener("click", function(e){
 })
 
 // 刪除事項
-list.addEventListener("click",function(e){
-  if (e.target.nodeName == "A") {
-    let selectedIitem = data.find((item) => item.id == e.target.getAttribute("data-id"))
-    console.log(data.indexOf(selectedIitem))
-
-    delete data[idx]
-    render()
+list.addEventListener("click", function(e) {
+  if (e.target.nodeName === "A") {
+    const selectedId = e.target.getAttribute("data-id");
+    const selectedIndex = data.findIndex((item) => item.id == selectedId);
+    if (selectedIndex !== -1) {
+      data.splice(selectedIndex, 1);
+    }
+    render();
   }
-})
+});
 
 
 // 進度分類
@@ -69,10 +71,6 @@ filterBtn.addEventListener("click", function(e){
   if (e.target.className == 'tab'){
     return
   }
-  render(e.target.getAttribute("data-completed"))
-})
-
-filterBtn.addEventListener("click", function(e){
   if (e.target.nodeName == "LI"){
     let items = filterBtn.getElementsByTagName("li")
     for (let i = 0; i < items.length; i++) {
@@ -80,7 +78,9 @@ filterBtn.addEventListener("click", function(e){
     }
     e.target.classList.add("selected")
   }
+  render(e.target.getAttribute("data-completed"))
 })
+
 
 
 // 待完成項目數量顯示

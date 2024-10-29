@@ -210,19 +210,19 @@ input[type=text]::placeholder {
   opacity: 1;
 }
 
-.list_footer {
+.listFooter {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 1.5rem 2rem 1rem 0.5rem;
   font-size: 14px;
 }
-.list_footer a {
+.listFooter a {
   color: #9f9a91;
   text-decoration: none;
 }
 @media (max-width: 575px) {
-  .list_footer {
+  .listFooter {
     padding: 1.5rem 0 1rem 0.5rem;
   }
 }
