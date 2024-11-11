@@ -1,6 +1,6 @@
 # Todo List
 
-！[img](https://i.imgur.com/aKmZos2.jpeg)
+![Todo List](https://i.imgur.com/aKmZos2.jpeg)
 
 ## Description
 
